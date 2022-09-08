@@ -1,17 +1,12 @@
-// const countries = [
-//   {code: "TR", name: "Turkiye"},
-//   {code: "UA", name: "Ukraine"}
-// ]
-
 import { useEffect, useState } from 'react';
-import { CountriesContainer } from './components/Countries';
+import { AuthorsContainer } from './components/Authors';
 
 const App = () => {
   const [countries, setCountries] = useState([]);
 
   return (
     <div>
-      <CountriesContainer />
+      <AuthorsContainer />
     </div>
   );
 };
