@@ -19,14 +19,14 @@ export const CreateAuthor = (props: any) => {
 
     const [isEditing, setIsEditing] = useState(editingAuthor ? true : false);
 
-    const [addAuthor, { loading, error }] = useMutation(ADD_AUTHOR, {
+    const [addAuthor, { loading }] = useMutation(ADD_AUTHOR, {
         refetchQueries: [
             { query: GET_AUTHORS },
             "authors",
         ]
     });
 
-    const [updateAuthor, { }] = useMutation(UPDATE_AUTHOR, {
+    const [updateAuthor] = useMutation(UPDATE_AUTHOR, {
         refetchQueries: [
             { query: GET_AUTHORS },
             "authors",

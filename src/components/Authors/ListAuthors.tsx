@@ -7,7 +7,7 @@ export const ListAuthors = (props: any) => {
   const { setEditingAuthor } = props;
   const { data, loading, error } = useQuery(GET_AUTHORS);
 
-  const [removeAuthor, { }] = useMutation(REMOVE_AUTHOR, {
+  const [removeAuthor] = useMutation(REMOVE_AUTHOR, {
     refetchQueries: [
       { query: GET_AUTHORS },
       "getAuthors"
