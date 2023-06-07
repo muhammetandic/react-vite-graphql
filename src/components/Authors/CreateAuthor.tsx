@@ -7,8 +7,8 @@ export const CreateAuthor = (props: any) => {
 
   const [author, setAuthor] = useState({
     _id: null,
-    firstName: '',
-    lastName: '',
+    firstName: "",
+    lastName: "",
   });
 
   useEffect(() => {
@@ -19,25 +19,19 @@ export const CreateAuthor = (props: any) => {
   const [isEditing, setIsEditing] = useState(editingAuthor ? true : false);
 
   const [addAuthor, { loading }] = useMutation(ADD_AUTHOR, {
-    refetchQueries: [
-      { query: GET_AUTHORS },
-      "authors",
-    ]
+    refetchQueries: [{ query: GET_AUTHORS }, "authors"],
   });
 
   const [updateAuthor] = useMutation(UPDATE_AUTHOR, {
-    refetchQueries: [
-      { query: GET_AUTHORS },
-      "authors",
-    ]
+    refetchQueries: [{ query: GET_AUTHORS }, "authors"],
   });
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     if (isEditing) {
       updateAuthor({ variables: { author } });
-    }
-    else {
+    } else {
+      console.log(author);
       addAuthor({ variables: { author } });
     }
     setAuthor({
@@ -56,7 +50,11 @@ export const CreateAuthor = (props: any) => {
           type="text"
           value={author?.firstName}
           onChange={(e) => {
-            setAuthor({ _id: author._id, firstName: e.target.value, lastName: author.lastName });
+            setAuthor({
+              _id: author?._id,
+              firstName: e.target.value,
+              lastName: author?.lastName,
+            });
           }}
         />
         <br />
@@ -65,11 +63,17 @@ export const CreateAuthor = (props: any) => {
           type="text"
           value={author?.lastName}
           onChange={(e) => {
-            setAuthor({ _id: author._id, firstName: author.firstName, lastName: e.target.value });
+            setAuthor({
+              _id: author?._id,
+              firstName: author?.firstName,
+              lastName: e.target.value,
+            });
           }}
         />
-        <button disabled={loading} type="submit">{isEditing ? "Update" : "Add"}</button>
+        <button disabled={loading} type="submit">
+          {isEditing ? "Update" : "Add"}
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
